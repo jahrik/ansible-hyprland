@@ -11,7 +11,6 @@
       - file-roller
       - grim
       - gvfs
-      - hyprland
       - kitty
       - lxappearance
       - mako
@@ -22,19 +21,13 @@
       - pavucontrol
       - polkit-gnome
       - python-requests
-      - sddm-git
-      - sddm-sugar-candy-git
       - slurp
       - starship
       - swappy
-      - swaylock-effects
-      - swww
       - thunar
       - thunar-archive-plugin
       - ttf-jetbrains-mono-nerd
-      - waybar-hyprland
       - wayland
-      - wlogout
       - wofi
       - xfce4-settings
 
@@ -44,4 +37,11 @@
   vars:
     aur_packages:
       # - hyprland-nvidia-git
+      - hyprland
+      - sddm-git
+      - sddm-sugar-candy-git
+      - swaylock-effects
+      - swww
+      - waybar-hyprland
+      - wlogout
       - xdg-desktop-portal-hyprland-git
