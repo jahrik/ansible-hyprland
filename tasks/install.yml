@@ -1,0 +1,27 @@
+---
+- name: Include OS dependencies
+  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
+
+- name: Create ~/.config/hypr directory
+  become: false
+  ansible.builtin.file:
+    path: "~/.config/hypr"
+    state: directory
+    mode: "0755"
+
+- name: Copy hyprland config files
+  become: false
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "~/.config/hypr/{{ item }}"
+    mode: "0644"
+  with_items:
+    - hyprland.conf
+    - background.jpg
+
+- name: Create $HOME/screenshots dir
+  become: false
+  ansible.builtin.file:
+    path: "~/screenshots/"
+    state: directory
+    mode: "0755"

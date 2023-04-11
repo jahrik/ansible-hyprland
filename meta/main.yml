@@ -1,0 +1,17 @@
+galaxy_info:
+  role_name: hyprland
+  namespace: jahrik
+  author: jahrik
+  description: Install and configure hyprland
+  company: https://homelab.business
+  issue_tracker_url: https://github.com/jahrik/ansible-hyperland/issues
+  license: GPLv2
+  min_ansible_version: 2.1
+  dependencies:
+    - jahrik.yay
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+  galaxy_tags:
+    - hyprland

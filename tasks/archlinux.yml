@@ -1,0 +1,47 @@
+---
+- name: Install hyprland packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - blueman
+      - bluez
+      - bluez-utils
+      - brightnessctl
+      - btop
+      - file-roller
+      - grim
+      - gvfs
+      - hyprland
+      - kitty
+      - lxappearance
+      - mako
+      - network-manager-applet
+      - noto-fonts-emoji
+      - pacman-contrib
+      - pamixer
+      - pavucontrol
+      - polkit-gnome
+      - python-requests
+      - sddm-git
+      - sddm-sugar-candy-git
+      - slurp
+      - starship
+      - swappy
+      - swaylock-effects
+      - swww
+      - thunar
+      - thunar-archive-plugin
+      - ttf-jetbrains-mono-nerd
+      - waybar-hyprland
+      - wayland
+      - wlogout
+      - wofi
+      - xfce4-settings
+
+- name: Include jahrik.yay to install hyprland packages from AUR
+  ansible.builtin.include_role:
+    name: jahrik.yay
+  vars:
+    aur_packages:
+      # - hyprland-nvidia-git
+      - xdg-desktop-portal-hyprland-git

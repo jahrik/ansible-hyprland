@@ -1,0 +1,13 @@
+---
+- name: Uninstall hyprland
+  become: true
+  ansible.builtin.package:
+    name:
+      - hyprland
+    state: absent
+
+- name: Destroy ~/.config/hyprland directory
+  become: false
+  ansible.builtin.file:
+    path: ~/.config/hyprland
+    state: absent
