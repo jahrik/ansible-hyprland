@@ -1,38 +1,58 @@
-Role Name
-=========
+# ansible-hyprland
 
-A brief description of the role goes here.
+[![CICD](https://github.com/jahrik/ansible-hyprland/actions/workflows/cicd.yml/badge.svg)](https://github.com/jahrik/ansible-hyprland/actions/workflows/cicd.yml)
 
-Requirements
-------------
+Install and configure [Hyprland](https://hyprland.org/) — a dynamic tiling Wayland compositor — along with a full suite of supporting packages (waybar, wofi, mako, kitty, swww, etc.) and deploy config files to `~/.config/hypr/`.
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Supports **Arch Linux** (primary, via AUR packages through `jahrik.yay`) and **Debian/Ubuntu** (basic install only).
 
-Role Variables
---------------
+## Requirements
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+- Arch Linux: depends on `jahrik.yay` role for AUR packages
+- Debian: `hyprland` must be available in your apt sources
 
-Dependencies
-------------
+## Role Variables
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+| Variable | Default | Description |
+|---|---|---|
+| `install` | `true` | Set to `false` to uninstall hyprland and remove `~/.config/hyprland` |
 
-Example Playbook
-----------------
+## Dependencies
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+- `jahrik.yay` (Arch Linux only) — installs AUR packages including hyprland, waybar-hyprland, sddm-git, swaylock-effects, etc.
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+## Example Playbook
 
-License
--------
+```yaml
+- hosts: workstations
+  roles:
+    - role: jahrik.hyprland
+```
 
-BSD
+To uninstall:
 
-Author Information
-------------------
+```yaml
+- hosts: workstations
+  roles:
+    - role: jahrik.hyprland
+      vars:
+        install: false
+```
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+## Testing
+
+```bash
+# Lint
+yamllint .
+
+# Full molecule test (Arch container)
+molecule test
+
+# Iterative
+molecule converge
+molecule destroy
+```
+
+## License
+
+GPLv2

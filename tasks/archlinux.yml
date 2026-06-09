@@ -1,7 +1,8 @@
 ---
 - name: Install hyprland packages
   become: true
-  ansible.builtin.package:
+  community.general.pacman:
+    update_cache: true
     name:
       - blueman
       - bluez
@@ -27,6 +28,7 @@
       - thunar
       - thunar-archive-plugin
       - ttf-jetbrains-mono-nerd
+      - waybar
       - wayland
       - wofi
       - xfce4-settings
@@ -38,10 +40,7 @@
     aur_packages:
       # - hyprland-nvidia-git
       - hyprland
-      - sddm-git
-      - sddm-sugar-candy-git
       - swaylock-effects
       - swww
-      - waybar-hyprland
       - wlogout
       - xdg-desktop-portal-hyprland-git

@@ -15,7 +15,7 @@
     src: "{{ item }}"
     dest: "~/.config/hypr/{{ item }}"
     mode: "0644"
-  with_items:
+  loop:
     - hyprland.conf
     - background.jpg
 

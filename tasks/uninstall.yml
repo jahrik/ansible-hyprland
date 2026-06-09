@@ -6,8 +6,8 @@
       - hyprland
     state: absent
 
-- name: Destroy ~/.config/hyprland directory
+- name: Destroy ~/.config/hypr directory
   become: false
   ansible.builtin.file:
-    path: ~/.config/hyprland
+    path: ~/.config/hypr
     state: absent
