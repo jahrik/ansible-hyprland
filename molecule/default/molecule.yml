@@ -7,6 +7,7 @@ platforms:
   - name: arch
     image: jahrik/docker-archlinux-ansible
     pre_build_image: true
+    pull: true
     ulimits:
       - nofile:1024:524288
 provisioner:

@@ -1,20 +1,19 @@
 ---
 - name: Install hyprland
   become: true
-  ansible.builtin.package:
-    name: "{{ item }}"
+  ansible.builtin.apt:
+    name:
+      - hyprland
     state: present
     update_cache: true
-  with_items:
-    - hyprland
+    cache_valid_time: 3600
 
 - name: Install hyprland extras
   become: true
   ansible.builtin.package:
-    name: "{{ item }}"
+    name:
+      - conky
+      - dmenu
+      - dunst
+      - feh
     state: present
-  with_items:
-    - conky
-    - dmenu
-    - dunst
-    - feh

@@ -1,10 +1,24 @@
 ---
-# This is an example playbook to execute Ansible tests.
-
 - name: Verify
   hosts: all
   gather_facts: false
   tasks:
-  - name: Example assertion
-    ansible.builtin.assert:
-      that: true
+    - name: Check hyprland config directory
+      ansible.builtin.stat:
+        path: ~/.config/hypr
+      register: hypr_dir
+
+    - name: Assert hypr config directory exists
+      ansible.builtin.assert:
+        that: hypr_dir.stat.exists and hypr_dir.stat.isdir
+        fail_msg: "~/.config/hypr directory not found"
+
+    - name: Check hyprland.conf
+      ansible.builtin.stat:
+        path: ~/.config/hypr/hyprland.conf
+      register: hypr_conf
+
+    - name: Assert hyprland.conf exists
+      ansible.builtin.assert:
+        that: hypr_conf.stat.exists
+        fail_msg: "~/.config/hypr/hyprland.conf not found"
