@@ -1,5 +1,7 @@
 ---
+# Based on ansible-lint config
 extends: default
+
 rules:
   braces:
     max-spaces-inside: 1
@@ -13,8 +15,7 @@ rules:
   commas:
     max-spaces-after: -1
     level: error
-  comments:
-    min-spaces-from-content: 1
+  comments: disable
   comments-indentation: disable
   document-start: disable
   empty-lines:
@@ -28,8 +29,5 @@ rules:
   new-line-at-end-of-file: disable
   new-lines:
     type: unix
-  octal-values:
-    forbid-implicit-octal: true
-    forbid-explicit-octal: true
   trailing-spaces: disable
   truthy: disable

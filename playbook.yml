@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- name: Configure Hyprland
+  hosts: all
   become: true
   vars:
     install: true

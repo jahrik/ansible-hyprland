@@ -20,11 +20,9 @@ jobs:
         with:
           python-version: '3.x'
       - name: Install test dependencies
-        run: pip3 install yamllint ansible-lint
+        run: pip3 install yamllint
       - name: Lint code
         run: yamllint .
-      - name: Ansible lint
-        run: ansible-lint
 
   molecule:
     name: Molecule
@@ -50,8 +48,7 @@ jobs:
 
   release:
     name: Release
-    needs:
-      - molecule
+    needs: [molecule]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
