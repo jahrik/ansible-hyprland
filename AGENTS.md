@@ -27,13 +27,9 @@ Installs [Hyprland](https://hyprland.org/) Wayland compositor and a full desktop
 ## Testing
 
 ```bash
-# Lint
-PATH="$HOME/.venv/ansible/bin:$PATH" yamllint .
-
-# Full test (Arch container only — hyprland is Arch-primary)
-mtest test
-
-# Iterative
-mtest converge
-mtest destroy
+yamllint .
+ansible-lint
+molecule test
+molecule converge
+molecule destroy
 ```
