@@ -3,6 +3,16 @@
   hosts: all
   gather_facts: false
   tasks:
+    - name: Check hyprland binary
+      ansible.builtin.command: which hyprland
+      register: hypr_bin
+      changed_when: false
+
+    - name: Assert hyprland is installed
+      ansible.builtin.assert:
+        that: hypr_bin.rc == 0
+        fail_msg: "hyprland binary not found in PATH"
+
     - name: Check hyprland config directory
       ansible.builtin.stat:
         path: ~/.config/hypr
@@ -22,3 +32,13 @@
       ansible.builtin.assert:
         that: hypr_conf.stat.exists
         fail_msg: "~/.config/hypr/hyprland.conf not found"
+
+    - name: Check hyprland background image
+      ansible.builtin.stat:
+        path: ~/.config/hypr/background.jpg
+      register: hypr_bg
+
+    - name: Assert background image exists
+      ansible.builtin.assert:
+        that: hypr_bg.stat.exists
+        fail_msg: "~/.config/hypr/background.jpg not found"
