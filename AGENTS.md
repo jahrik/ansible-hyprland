@@ -27,6 +27,8 @@ Installs [Hyprland](https://hyprland.org/) Wayland compositor and a full desktop
 ## Testing
 
 ```bash
+uv sync
+source .venv/bin/activate
 yamllint .
 ansible-lint
 molecule test
