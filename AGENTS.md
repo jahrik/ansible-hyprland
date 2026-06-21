@@ -33,3 +33,9 @@ molecule test
 molecule converge
 molecule destroy
 ```
+
+## CI
+
+- **Lint**: yamllint + ansible-lint
+- **Molecule**: Arch Linux via Docker (Wayland verify checks binary presence only)
+- **Release**: publishes to Ansible Galaxy on merge to `main`
