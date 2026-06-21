@@ -1,15 +1,22 @@
 # ansible-hyprland
 
 [![CICD](https://github.com/jahrik/ansible-hyprland/actions/workflows/cicd.yml/badge.svg)](https://github.com/jahrik/ansible-hyprland/actions/workflows/cicd.yml)
+[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-jahrik.hyprland-blue?logo=ansible)](https://galaxy.ansible.com/ui/standalone/roles/jahrik/hyprland/)
 
 Install and configure [Hyprland](https://hyprland.org/) — a dynamic tiling Wayland compositor — along with a full suite of supporting packages (waybar, wofi, mako, kitty, swww, etc.) and deploy config files to `~/.config/hypr/`.
 
-Supports **Arch Linux** (primary, via AUR packages through `jahrik.yay`) and **Debian/Ubuntu** (basic install only).
+## OS Support
+
+| Platform | Install method |
+|---|---|
+| Arch Linux | AUR (`hyprland`, `swaylock-effects`, `swww`, `wlogout`) + pacman (`waybar`, `wofi`, `mako`, `kitty`, etc.) via `jahrik.yay` |
+| Debian / Ubuntu | `apt install hyprland` |
+
+macOS and SteamOS are not supported — Hyprland is a Wayland compositor that requires a compatible kernel.
 
 ## Requirements
 
 - Arch Linux: depends on `jahrik.yay` role for AUR packages
-- Debian: `hyprland` must be available in your apt sources
 
 ## Role Variables
 
@@ -42,13 +49,11 @@ To uninstall:
 ## Testing
 
 ```bash
-# Lint
+uv sync
+source .venv/bin/activate
 yamllint .
-
-# Full molecule test (Arch container)
+ansible-lint
 molecule test
-
-# Iterative
 molecule converge
 molecule destroy
 ```
@@ -56,3 +61,7 @@ molecule destroy
 ## License
 
 GPLv2
+
+## Author Information
+
+jahrik@gmail.com

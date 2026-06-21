@@ -27,9 +27,17 @@ Installs [Hyprland](https://hyprland.org/) Wayland compositor and a full desktop
 ## Testing
 
 ```bash
+uv sync
+source .venv/bin/activate
 yamllint .
 ansible-lint
 molecule test
 molecule converge
 molecule destroy
 ```
+
+## CI
+
+- **Lint**: yamllint + ansible-lint
+- **Molecule**: Arch Linux via Docker (Wayland verify checks binary presence only)
+- **Release**: publishes to Ansible Galaxy on merge to `main`
