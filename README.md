@@ -49,13 +49,11 @@ To uninstall:
 ## Testing
 
 ```bash
-# Lint
+uv sync
+source .venv/bin/activate
 yamllint .
-
-# Full molecule test (Arch container)
+ansible-lint
 molecule test
-
-# Iterative
 molecule converge
 molecule destroy
 ```
