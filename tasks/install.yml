@@ -1,6 +1,7 @@
 ---
 - name: Include OS dependencies
   ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
+  when: ansible_os_family in ['Archlinux', 'Debian']
 
 - name: Create ~/.config/hypr directory
   become: false

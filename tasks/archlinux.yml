@@ -1,8 +1,14 @@
 ---
-- name: Install hyprland packages
+- name: Update pacman cache
   become: true
   community.general.pacman:
     update_cache: true
+  changed_when: false
+  when: ansible_os_family == 'Archlinux'
+
+- name: Install hyprland packages
+  become: true
+  community.general.pacman:
     name:
       - blueman
       - bluez
@@ -32,6 +38,7 @@
       - wayland
       - wofi
       - xfce4-settings
+  when: ansible_os_family == 'Archlinux'
 
 - name: Include jahrik.yay to install hyprland packages from AUR
   ansible.builtin.include_role:
@@ -43,3 +50,4 @@
       - swaylock-effects
       - swww
       - wlogout
+  when: ansible_os_family == 'Archlinux'
