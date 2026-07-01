@@ -4,6 +4,9 @@ dependency:
 driver:
   name: docker
 platforms:
+  - name: ubuntu
+    image: geerlingguy/docker-ubuntu2604-ansible
+    pre_build_image: true
   - name: arch
     image: jahrik/docker-archlinux-ansible
     pre_build_image: true
