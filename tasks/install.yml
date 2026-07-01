@@ -2,9 +2,9 @@
 - name: Fail on unsupported OS family
   ansible.builtin.fail:
     msg: >-
-      hyprland role does not support OS family '{{ ansible_facts['os_family'] }}'.
+      hyprland role does not support OS family '{{ ansible_facts.get('os_family', 'unknown') }}'.
       Supported families: Debian, Archlinux.
-  when: ansible_facts['os_family'] not in ['Debian', 'Archlinux']
+  when: ansible_facts.get('os_family', 'unknown') not in ['Debian', 'Archlinux']
 
 - name: Include OS dependencies
   ansible.builtin.include_tasks: "{{ ansible_facts['os_family'] | lower }}.yml"
