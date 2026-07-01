@@ -46,6 +46,21 @@ To uninstall:
         install: false
 ```
 
+## Tags
+
+Run or skip parts of the role with tags:
+
+```bash
+ansible-playbook playbook.yml --tags hyprland:install
+ansible-playbook playbook.yml --skip-tags hyprland:uninstall
+```
+
+| Tag | Scope |
+|---|---|
+| `hyprland` | All role tasks |
+| `hyprland:install` | Install path only |
+| `hyprland:uninstall` | Uninstall path only |
+
 ## Testing
 
 ```bash
