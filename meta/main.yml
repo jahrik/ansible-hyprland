@@ -13,6 +13,8 @@ galaxy_info:
         - all
   galaxy_tags:
     - hyprland
+    - wayland
+    - compositor
 
 dependencies:
   - role: jahrik.yay

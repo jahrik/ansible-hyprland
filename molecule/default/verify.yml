@@ -4,14 +4,14 @@
   gather_facts: false
   tasks:
     - name: Check hyprland binary
-      ansible.builtin.command: which hyprland
+      ansible.builtin.stat:
+        path: /usr/bin/hyprland
       register: hypr_bin
-      changed_when: false
 
     - name: Assert hyprland is installed
       ansible.builtin.assert:
-        that: hypr_bin.rc == 0
-        fail_msg: "hyprland binary not found in PATH"
+        that: hypr_bin.stat.exists
+        fail_msg: "hyprland binary not found at /usr/bin/hyprland"
 
     - name: Check hyprland config directory
       ansible.builtin.stat:
@@ -42,3 +42,33 @@
       ansible.builtin.assert:
         that: hypr_bg.stat.exists
         fail_msg: "~/.config/hypr/background.jpg not found"
+
+- name: Verify uninstall
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Run jahrik.hyprland with install false
+      ansible.builtin.include_role:
+        name: jahrik.hyprland
+      vars:
+        install: false
+
+    - name: Check hyprland binary removed
+      ansible.builtin.stat:
+        path: /usr/bin/hyprland
+      register: hypr_bin_removed
+
+    - name: Assert hyprland binary is removed
+      ansible.builtin.assert:
+        that: not hypr_bin_removed.stat.exists
+        fail_msg: "hyprland binary still present at /usr/bin/hyprland after uninstall"
+
+    - name: Check hyprland config directory removed
+      ansible.builtin.stat:
+        path: ~/.config/hypr
+      register: hypr_dir_removed
+
+    - name: Assert hypr config directory is removed
+      ansible.builtin.assert:
+        that: not hypr_dir_removed.stat.exists
+        fail_msg: "~/.config/hypr directory still present after uninstall"

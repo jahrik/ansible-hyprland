@@ -1,0 +1,9 @@
+---
+argument_specs:
+  main:
+    short_description: Install and configure Hyprland
+    options:
+      install:
+        type: bool
+        default: true
+        description: Set to false to uninstall Hyprland and remove its config
